@@ -1,8 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(Texture* texture, Vector2u imageCount, float switchTime, float speed) :
-	animation(texture, imageCount, switchTime),
-	player(texture,imageCount,switchTime,speed)
+	animation(texture, imageCount, switchTime)
 {
 	this->speed = speed;
 	row = 4;
@@ -40,6 +39,19 @@ void Enemy::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f si
 					canMoveUp = true;
 					canMoveDown = true;
 				}
+				/*else if(canMoveL == false)
+				{
+					if (deltaY > 0 && canMoveUp == true) {
+						movement.y -= speed * deltaTime;
+						row = 0;
+						face = 2;
+					}
+					if (deltaY < 0 && canMoveDown == true) {
+						movement.y += speed * deltaTime;
+						row = 2;
+						face = 3;
+					}
+				}*/
 			}
 			else if (deltaX < -5.0f)
 			{
@@ -52,27 +64,19 @@ void Enemy::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f si
 					canMoveUp = true;
 					canMoveDown = true;
 				}
-			}
-			else
-			{
-				if (canMoveR == true) {
-					if (face == 1) {
-						row = 1;
-						canMoveL = true;
-						canMoveR = true;
-						canMoveUp = true;
-						canMoveDown = true;
+				/*else if (canMoveR == false)
+				{
+					if (deltaY > 0 && canMoveUp == true) {
+						movement.y -= speed * deltaTime;
+						row = 0;
+						face = 2;
 					}
-				}
-				if (canMoveL == true) {
-					if (face == 0) {
-						row = 3;
-						canMoveL = true;
-						canMoveR = true;
-						canMoveUp = true;
-						canMoveDown = true;
+					if (deltaY < 0 && canMoveDown == true) {
+						movement.y += speed * deltaTime;
+						row = 2;
+						face = 3;
 					}
-				}
+				}*/
 			}
 		}
 		else
@@ -88,6 +92,19 @@ void Enemy::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f si
 					canMoveUp = true;
 					canMoveDown = true;
 				}
+				/*else if (canMoveUp == false)
+				{
+					if (deltaX > 0 && canMoveL == true) {
+						movement.x -= speed * deltaTime;
+						row = 3;
+						face = 0;
+					}
+					if (deltaX < 0 && canMoveR == true) {
+						movement.x += speed * deltaTime;
+						row = 1;
+						face = 1;
+					}
+				}*/
 			}
 			else if(deltaY < -5.0f)
 			{
@@ -100,27 +117,19 @@ void Enemy::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f si
 					canMoveUp = true;
 					canMoveDown = true;
 				}
-			}
-			else
-			{
-				if (canMoveUp == true) {
-					if (face == 2) {
-						row = 0;
-						canMoveL = true;
-						canMoveR = true;
-						canMoveUp = true;
-						canMoveDown = true;
+				/*else if (canMoveDown == false)
+				{
+					if (deltaX > 0 && canMoveL == true) {
+						movement.x -= speed * deltaTime;
+						row = 3;
+						face = 0;
 					}
-				}
-				if (canMoveDown == true) {
-					if (face == 3) {
-						row = 2;
-						canMoveL = true;
-						canMoveR = true;
-						canMoveUp = true;
-						canMoveDown = true;
+					if (deltaX < 0 && canMoveR == true) {
+						movement.x += speed * deltaTime;
+						row = 1;
+						face = 1;
 					}
-				}
+				}*/
 			}
 		}
 	}
@@ -134,9 +143,29 @@ void Enemy::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f si
 	enemy.move(movement);
 }
 
-void Enemy::Update()
+void Enemy::Update(Vector2f sizemap, Vector2f mapposition)
 {
 	text.setPosition(enemy.getPosition().x - enemy.getSize().x / 2 - 8, enemy.getPosition().y - enemy.getSize().y / 2 - 18);
+	if (enemy.getPosition().x <= mapposition.x + 2)
+	{
+		canMoveL = false;
+		enemy.move(1, 0);
+	}
+	if (enemy.getPosition().y <= mapposition.y + 5)
+	{
+		canMoveUp = false;
+		enemy.move(0, 1);
+	}
+	if (enemy.getPosition().x >= sizemap.x - 30)
+	{
+		canMoveR = false;
+		enemy.move(-1, 0);
+	}
+	if (enemy.getPosition().y >= sizemap.y - 50)
+	{
+		canMoveDown = false;
+		enemy.move(0, -1);
+	}
 }
 
 void Enemy::Draw(RenderTarget& window)

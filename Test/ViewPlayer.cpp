@@ -7,6 +7,10 @@ ViewPlayer::ViewPlayer(Vector2f position, Vector2f size)
 	fontMenu.loadFromFile("Font/menufont.ttf");
 
 	view = new View(position, size);
+	button = new Button(0, 0, 150, 50,
+		&font, "Try Again", 60, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
+	button2 = new Button(0, 0, 150, 50,
+		&font, "Main Menu", 60, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
 	playerhp.setSize(Vector2f(700, 393));
 	playerhp.setOrigin(playerhp.getSize() / 2.f);
 	playerhp.setFillColor(Color::Transparent);
@@ -16,6 +20,18 @@ ViewPlayer::ViewPlayer(Vector2f position, Vector2f size)
 	Glock.loadFromFile("Item/glock2.png");
 	SMG.loadFromFile("Item/smg2.png");
 	Shotgun.loadFromFile("Item/shotgun2.png");
+	frame.loadFromFile("Dead/frame.png");
+
+	tryagainframe.setTexture(&frame);
+	tryagainframe.setSize(Vector2f(1366, 768));
+	tryagainframe.setOrigin(tryagainframe.getSize() / 2.f);
+	tryagainframe.setPosition(tryagainframe.getSize()/2.f);
+
+	deadcount.setFont(fonthpzombie);
+	deadcount.setCharacterSize(60);
+	deadcount.setFillColor(Color::White);
+	deadcount.setOutlineThickness(1.f);
+	deadcount.setOutlineColor(Color::Black);
 
 	glockBullet.setFont(fonthpzombie);
 	smgBullet.setFont(fonthpzombie);
@@ -62,6 +78,12 @@ ViewPlayer::ViewPlayer(Vector2f position, Vector2f size)
 	task5.setFillColor(Color::White);
 	task5.setOutlineThickness(1.5f);
 	task5.setOutlineColor(Color::Black);
+
+	task6.setFont(fonthpzombie);
+	task6.setCharacterSize(23);
+	task6.setFillColor(Color::White);
+	task6.setOutlineThickness(1.5f);
+	task6.setOutlineColor(Color::Black);
 
 	HP.setFont(fonthpzombie);
 	HP.setCharacterSize(17);
@@ -131,44 +153,45 @@ ViewPlayer::ViewPlayer(Vector2f position, Vector2f size)
 
 void ViewPlayer::viewUpdate(Player player, RectangleShape map)
 {
-	Vector2f viewSize = view->getSize();
-	if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
-		view->setCenter(viewSize.x / 2, viewSize.y / 2);
-		playerhp.setPosition(viewSize.x / 2, viewSize.y / 2);
+	if (viewup == true) {
+		Vector2f viewSize = view->getSize();
+		if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
+			view->setCenter(viewSize.x / 2, viewSize.y / 2);
+			playerhp.setPosition(viewSize.x / 2, viewSize.y / 2);
+		}
+		else if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
+			view->setCenter(viewSize.x / 2, player.GetPosition().y);
+			playerhp.setPosition(viewSize.x / 2, player.GetPosition().y);
+		}
+		else if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
+			view->setCenter(viewSize.x / 2, map.getSize().y - viewSize.y / 2);
+			playerhp.setPosition(viewSize.x / 2, map.getSize().y - viewSize.y / 2);
+		}
+		else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
+			view->setCenter(player.GetPosition().x, viewSize.y / 2);
+			playerhp.setPosition(player.GetPosition().x, viewSize.y / 2);
+		}
+		else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
+			view->setCenter(player.GetPosition().x, player.GetPosition().y);
+			playerhp.setPosition(player.GetPosition().x, player.GetPosition().y);
+		}
+		else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
+			view->setCenter(player.GetPosition().x, map.getSize().y - viewSize.y / 2);
+			playerhp.setPosition(player.GetPosition().x, map.getSize().y - viewSize.y / 2);
+		}
+		else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
+			view->setCenter(map.getSize().x - viewSize.x / 2, viewSize.y / 2);
+			playerhp.setPosition(map.getSize().x - viewSize.x / 2, viewSize.y / 2);
+		}
+		else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
+			view->setCenter(map.getSize().x - viewSize.x / 2, player.GetPosition().y);
+			playerhp.setPosition(map.getSize().x - viewSize.x / 2, player.GetPosition().y);
+		}
+		else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
+			view->setCenter(map.getSize().x - viewSize.x / 2, map.getSize().y - viewSize.y / 2);
+			playerhp.setPosition(map.getSize().x - viewSize.x / 2, map.getSize().y - viewSize.y / 2);
+		}
 	}
-	else if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
-		view->setCenter(viewSize.x / 2, player.GetPosition().y);
-		playerhp.setPosition(viewSize.x / 2, player.GetPosition().y);
-	}
-	else if (player.GetPosition().x <= viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
-		view->setCenter(viewSize.x / 2, map.getSize().y - viewSize.y / 2);
-		playerhp.setPosition(viewSize.x / 2, map.getSize().y - viewSize.y / 2);
-	}
-	else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
-		view->setCenter(player.GetPosition().x, viewSize.y / 2);
-		playerhp.setPosition(player.GetPosition().x, viewSize.y / 2);
-	}
-	else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
-		view->setCenter(player.GetPosition().x, player.GetPosition().y);
-		playerhp.setPosition(player.GetPosition().x, player.GetPosition().y);
-	}
-	else if (player.GetPosition().x > viewSize.x / 2 && player.GetPosition().x <= map.getSize().x - viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
-		view->setCenter(player.GetPosition().x, map.getSize().y - viewSize.y / 2);
-		playerhp.setPosition(player.GetPosition().x, map.getSize().y - viewSize.y / 2);
-	}
-	else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y <= viewSize.y / 2) {
-		view->setCenter(map.getSize().x - viewSize.x / 2, viewSize.y / 2);
-		playerhp.setPosition(map.getSize().x - viewSize.x / 2, viewSize.y / 2);
-	}
-	else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y > viewSize.y / 2 && player.GetPosition().y <= map.getSize().y - viewSize.y / 2) {
-		view->setCenter(map.getSize().x - viewSize.x / 2, player.GetPosition().y);
-		playerhp.setPosition(map.getSize().x - viewSize.x / 2, player.GetPosition().y);
-	}
-	else if (player.GetPosition().x > map.getSize().x - viewSize.x / 2 && player.GetPosition().y > map.getSize().y - viewSize.y / 2) {
-		view->setCenter(map.getSize().x - viewSize.x / 2, map.getSize().y - viewSize.y / 2);
-		playerhp.setPosition(map.getSize().x - viewSize.x / 2, map.getSize().y - viewSize.y / 2);
-	}
-
 }
 
 void ViewPlayer::setView(RenderWindow& window)
@@ -227,9 +250,33 @@ void ViewPlayer::DrawTask1(RenderWindow& window)
 	task3.setPosition(playerhp.getPosition().x + view->getSize().x / 2 - 112, playerhp.getPosition().y - view->getSize().y / 2 + 80);
 	task4.setPosition(playerhp.getPosition().x + view->getSize().x / 2 - 185, playerhp.getPosition().y - view->getSize().y / 2 + 30);
 	task5.setPosition(playerhp.getPosition().x + view->getSize().x / 2 - 267, playerhp.getPosition().y - view->getSize().y / 2 + 30);
+	task6.setPosition(playerhp.getPosition().x + view->getSize().x / 2 - 175, playerhp.getPosition().y - view->getSize().y / 2 + 55);
 	window.draw(task1);
 	window.draw(task2);
 	window.draw(task3);
 	window.draw(task4);
 	window.draw(task5);
+	window.draw(task6);
+}
+
+void ViewPlayer::DrawTryagain(RenderWindow& window)
+{
+	window.draw(tryagainframe);
+
+}
+
+void ViewPlayer::updateButton(const Vector2i& mousePosWindow)
+{
+	button->update(mousePosWindow);
+	button2->update(mousePosWindow);
+}
+
+void ViewPlayer::DrawButton(RenderWindow& window)
+{
+	button->setPosi(Vector2f(tryagainframe.getPosition().x - 340, tryagainframe.getPosition().y - 50));
+	button2->setPosi(Vector2f(tryagainframe.getPosition().x - 340, tryagainframe.getPosition().y + 40));
+	deadcount.setPosition(Vector2f(tryagainframe.getPosition().x - 300, tryagainframe.getPosition().y - 150));
+	button->render(window);
+	button2->render(window);
+	window.draw(deadcount);
 }

@@ -36,9 +36,6 @@
     <ClCompile Include="Enemy3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FirstLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GenBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,6 +81,30 @@
     <ClCompile Include="Textbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BossProjectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CountTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="electricshock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="leon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -102,9 +123,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Enemy3.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstLevel.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="GenBar.h">
@@ -152,5 +170,34 @@
     <ClInclude Include="Wall3.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BossProjectile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CountTime.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="electricshock.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall4.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall5.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openal32.dll">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

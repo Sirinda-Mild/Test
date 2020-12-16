@@ -12,7 +12,7 @@ public:
 	Texture howtop, framet;
 	RectangleShape frame, howtoplay;
 	Font fontmenu;
-	Button* buttonPlay, * buttonHowTP, * buttonMenu;
+	Button* buttonPlay, * buttonQuit2;
 	Pause();
 	~Pause();
 

@@ -14,7 +14,7 @@ public:
 	~Enemy();
 
 	void UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f size);
-	void Update();
+	void Update(Vector2f sizemap, Vector2f mapposition);
 	void Draw(RenderTarget& window);
 
 	int direction = 0;
@@ -44,6 +44,5 @@ public:
 
 private:
 	Animation animation;
-	Player player;
 };
 

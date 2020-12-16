@@ -15,6 +15,7 @@ public:
 	Wall3(Vector2f size, Vector2f position);
 	Vector2f GetPosition() { return wall.getPosition(); }
 	Vector2f GetHalfSize() { return wall.getSize() / 2.0f; }
+	bool destroy = false;
 
 	Collider GetCollider() { return Collider(wall); }
 

@@ -26,6 +26,24 @@ MenuBG::MenuBG(Texture* texture, Vector2u imageCount, float switchTime) :
 	mainText2.setString("DEAD");
 	mainText2.setPosition(Vector2f(bg.getPosition().x + 410, bg.getPosition().y + bg.getSize().y - 120));
 
+	textname.setFont(fontmenu);
+	textname.setString("name");
+	textname.setFillColor(Color::White);
+	textname.setPosition(100, 90);
+	textname.setCharacterSize(50);
+
+	texttime.setFont(fontmenu);
+	texttime.setString("time");
+	texttime.setFillColor(Color::White);
+	texttime.setPosition(350, 90);
+	texttime.setCharacterSize(50);
+
+	textdead.setFont(fontmenu);
+	textdead.setString("dead");
+	textdead.setFillColor(Color::White);
+	textdead.setPosition(600, 90);
+	textdead.setCharacterSize(50);
+
 	buttonStory = new Button(315, 150, 150, 50,
 		&fontmenu, "New game", 45, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
 	buttonEndless = new Button(315, 230, 150, 50,
@@ -121,5 +139,14 @@ void MenuBG::DrawBG2(RenderWindow& window)
 {
 	window.draw(bg);
 	window.draw(howtoplay);
+	buttonBack3->render(window);
+}
+
+void MenuBG::DrawBG3(RenderWindow& window)
+{
+	window.draw(bg);
+	window.draw(textdead);
+	window.draw(textname);
+	window.draw(texttime);
 	buttonBack3->render(window);
 }

@@ -8,7 +8,6 @@ Wall3::Wall3(Vector2f size, Vector2f playerPosition)
 
 	wall.setFillColor(Color::Transparent);
 	wall.setOutlineThickness(1.f);
-	//wall.setOutlineColor(Color::Red);
 	wall.setOutlineColor(Color::Transparent);
 
 }

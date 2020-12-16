@@ -10,17 +10,10 @@ Pause::Pause()
 	frame.setTexture(&framet);
 	frame.setPosition(Vector2f(0, 0));
 
-	howtop.loadFromFile("Menu/howtoplay.png");
-	howtoplay.setSize(frame.getSize());
-	howtoplay.setPosition(Vector2f(frame.getPosition().x, frame.getPosition().y));
-	howtoplay.setTexture(&howtop);
-
-	buttonPlay = new Button(315, 150, 76, 25,
-		&fontmenu, "Play", 45, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
-	buttonHowTP = new Button(315, 230, 76, 25,
-		&fontmenu, "How to play", 45, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
-	buttonMenu = new Button(315, 310, 76, 25,
-		&fontmenu, "Menu", 45, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
+	buttonPlay = new Button(400, 170, 76, 25,
+		&fontmenu, "Play", 55, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
+	buttonQuit2 = new Button(400, 290, 76, 25,
+		&fontmenu, "Quit", 55, Color(Color::White), Color(Color(200, 100, 100)), Color(Color(200, 100, 100)));
 	
 }
 
@@ -31,8 +24,7 @@ Pause::~Pause()
 void Pause::UpdateButton(const Vector2i& mousePosWindow)
 {
 	buttonPlay->update(mousePosWindow);
-	buttonHowTP->update(mousePosWindow);
-	buttonMenu->update(mousePosWindow);
+	buttonQuit2->update(mousePosWindow);
 }
 
 void Pause::DrawBG(RenderWindow& window)
@@ -43,7 +35,6 @@ void Pause::DrawBG(RenderWindow& window)
 void Pause::DrawButton(RenderWindow& window)
 {
 	buttonPlay->render(window);
-	buttonHowTP->render(window);
-	buttonMenu->render(window);
+	buttonQuit2->render(window);
 }
 

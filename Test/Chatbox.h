@@ -8,12 +8,11 @@ using namespace sf;
 class Chatbox
 {
 public:
-	Texture chatboxTexture;
 	Text chat1;
 	RectangleShape chatbox;
 	Font font, fonthpzombie, fontMenu;
 
-	Chatbox(Vector2f size, Vector2f posi);
+	Chatbox(Vector2f size, Vector2f posi, Texture* texture);
 	~Chatbox();
 	void Draw1(RenderWindow& window);
 

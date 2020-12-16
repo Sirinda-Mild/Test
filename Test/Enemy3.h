@@ -14,13 +14,16 @@ public:
 	~Enemy3();
 
 	void UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f size);
-	void Update();
+	void Update(Vector2f sizemap, Vector2f mapposition);
 	void Draw(RenderTarget& window);
 
 	int direction = 0;
 	int enemy3hp = 8;
 	int enemy3maxhp = 8;
+	int enemy4hp = 15;
+	int enemy4maxhp = 15;
 	int enemy3attackDamage = 8;
+	int enemy4attackDamage = 10;
 	int face = 3;
 	bool alive = true;
 	bool canMoveL = true;
@@ -37,6 +40,5 @@ public:
 
 private:
 	Animation animation;
-	Player player;
 };
 

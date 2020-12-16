@@ -74,7 +74,6 @@ public:
 
 	void playerCollideEdge(Vector2f sizemap, Vector2f mapposition);
 
-private:
 	Animation animation;
 	unsigned int weapon, row;
 	float speed;

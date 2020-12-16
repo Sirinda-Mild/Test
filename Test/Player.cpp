@@ -439,12 +439,12 @@ void Player::Update(float deltaTime)
 		weapon = 1;
 	}
 	
+	//player dead
 	if (hp <= 0) {
 		hp = 0;
 		movement.x = 0.0f;
 		movement.y = 0.0f;
 		row = 40;
-
 	}
 
 	animation.Update(row, deltaTime);

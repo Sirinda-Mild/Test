@@ -1,8 +1,7 @@
 #include "Enemy3.h"
 
 Enemy3::Enemy3(Texture* texture, Vector2u imageCount, float switchTime, float speed) :
-	animation(texture, imageCount, switchTime),
-	player(texture, imageCount, switchTime, speed)
+	animation(texture, imageCount, switchTime)
 {
 	this->speed = speed;
 	row = 4;
@@ -75,7 +74,7 @@ void Enemy3::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f s
 				}
 			}
 		}
-		else
+		if (intersectX < intersectY)
 		{
 			if (deltaY > 5.0f)
 			{
@@ -134,9 +133,29 @@ void Enemy3::UpdateMovement(float deltaTime, Vector2f playerPosition, Vector2f s
 	enemy.move(movement);
 }
 
-void Enemy3::Update()
+void Enemy3::Update(Vector2f sizemap, Vector2f mapposition)
 {
 	text.setPosition(enemy.getPosition().x - enemy.getSize().x / 2 + 23, enemy.getPosition().y - enemy.getSize().y / 2 - 10);
+	if (enemy.getPosition().x <= mapposition.x + 2)
+	{
+		canMoveL = false;
+		enemy.move(1, 0);
+	}
+	if (enemy.getPosition().y <= mapposition.y + 5)
+	{
+		canMoveUp = false;
+		enemy.move(0, 1);
+	}
+	if (enemy.getPosition().x >= sizemap.x - 30)
+	{
+		canMoveR = false;
+		enemy.move(-1, 0);
+	}
+	if (enemy.getPosition().y >= sizemap.y - 50)
+	{
+		canMoveDown = false;
+		enemy.move(0, -1);
+	}
 }
 
 void Enemy3::Draw(RenderTarget& window)

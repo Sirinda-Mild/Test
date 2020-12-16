@@ -146,14 +146,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossProjectile.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Chatbox.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CountTime.cpp" />
+    <ClCompile Include="electricshock.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy3.cpp" />
-    <ClCompile Include="FirstLevel.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GenBar.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
+    <ClCompile Include="leon.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuBG.cpp" />
     <ClCompile Include="Pause.cpp" />
@@ -168,17 +173,24 @@
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Wall2.cpp" />
     <ClCompile Include="Wall3.cpp" />
+    <ClCompile Include="Wall4.cpp" />
+    <ClCompile Include="Wall5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossProjectile.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Chatbox.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="CountTime.h" />
+    <ClInclude Include="electricshock.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy3.h" />
-    <ClInclude Include="FirstLevel.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="GenBar.h" />
     <ClInclude Include="HitboxComponent.h" />
+    <ClInclude Include="leon.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuBG.h" />
     <ClInclude Include="Pause.h" />
@@ -192,6 +204,11 @@
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Wall2.h" />
     <ClInclude Include="Wall3.h" />
+    <ClInclude Include="Wall4.h" />
+    <ClInclude Include="Wall5.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openal32.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

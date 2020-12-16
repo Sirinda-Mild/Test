@@ -11,9 +11,6 @@ public:
 	void Update(int row, float deltaTime); //Function Member
 public:  
 	IntRect uvRect;
-	RectangleShape bg;
-private: 
-//sf::IntRect recta;
 	Vector2u imageCount;
 	Vector2u currentImage;
 	float totalTime;

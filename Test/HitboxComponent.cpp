@@ -6,7 +6,6 @@ HitboxComponent::HitboxComponent(float offset_x, float offset_y, Vector2f size, 
 	hitbox.setSize(size);
 	hitbox.setFillColor(Color::Transparent);
 	hitbox.setOutlineThickness(1.f);
-	//hitbox.setOutlineColor(Color::Green);
 	hitbox.setOutlineColor(Color::Transparent);
 
 }

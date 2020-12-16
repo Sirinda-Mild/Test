@@ -7,8 +7,8 @@ class Random
 {
 public:
 	int generateRandom(int min, int max);
-	int generateRandom0(int max);
-	bool generateRandomBool();
+	/*int generateRandom0(int max);
+	bool generateRandomBool();*/
 
 };
 

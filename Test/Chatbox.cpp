@@ -1,8 +1,7 @@
 #include "Chatbox.h"
 
-Chatbox::Chatbox(Vector2f size, Vector2f posi)
+Chatbox::Chatbox(Vector2f size, Vector2f posi, Texture* texture)
 {
-	chatboxTexture.loadFromFile("Chat/chatbox.png");
 	//font
 	font.loadFromFile("Font/ArcadeClassic.ttf");
 	fonthpzombie.loadFromFile("Font/DisposableDroidBB.ttf");
@@ -10,7 +9,7 @@ Chatbox::Chatbox(Vector2f size, Vector2f posi)
 
 	chatbox.setSize(size);
 	chatbox.setOrigin(chatbox.getSize() / 2.f);
-	chatbox.setTexture(&chatboxTexture);
+	chatbox.setTexture(texture);
 	chatbox.setPosition(posi);
 
 	chat1.setFont(fonthpzombie);
